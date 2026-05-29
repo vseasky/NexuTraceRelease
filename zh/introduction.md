@@ -1,28 +1,35 @@
-# NexusTools
+# NexuTrace
 
-**NexusTools** 是一款专业的多协议通信调试与数据可视化工具，面向嵌入式开发、物联网及工业应用场景。
+**NexuTrace** 是一款专业的多协议通信调试与数据可视化工具，面向嵌入式开发、物联网及工业应用场景。本仓库**单次发版交付两个产品**：
+
+- **NexuTrace** —— 全功能版本，覆盖所有连接方式与协议。
+- **VCAN-Views** —— USB-CAN 专用免费版本。保留全部数据分析视图，仅去掉非 USB-CAN 通道、在线升级器与订阅系统。
+
+两个产品**统一发版**，每次提供 **Windows x64 + x86 (32 位) 两种架构**，共 4 个 zip 安装包。
 
 ## 连接方式
 
-| 类型 | 说明 |
-|------|------|
-| Serial | COM 串口通信 |
-| USB CDC | 虚拟串口 (CDC ACM) |
-| USB HID | HID 设备通信 |
-| USB WinUSB | WinUSB 设备通信 |
-| TCP Server | TCP 服务端，支持多客户端 |
-| TCP Client | TCP 客户端连接 |
-| UDP | UDP 数据报通信 |
+| 类型 | NexuTrace | VCAN-Views | 说明 |
+|---|:---:|:---:|---|
+| Serial | ✓ | — | COM 串口通信 |
+| USB CDC | ✓ | — | 虚拟串口 (CDC ACM) |
+| USB HID | ✓ | — | HID 设备通信 |
+| USB WinUSB | ✓ | — | WinUSB 设备通信 |
+| TCP Server | ✓ | — | TCP 服务端，支持多客户端 |
+| TCP Client | ✓ | — | TCP 客户端连接 |
+| UDP | ✓ | — | UDP 数据报通信 |
+| **USB-CAN (VCAN)** | ✓ | ✓ | VCAN 协议，单/双通道 |
+| **USB-CAN (Candle)** | ✓ | ✓ | Candle / gs_usb，双通道 + CAN-FD |
 
 ## 协议支持
 
 | 协议 | 说明 |
-|------|------|
-| NexusProtocol | 原生二进制协议，帧结构 + CRC 校验 |
+|---|---|
+| NexuFrame | 原生二进制协议，帧结构 + CRC 校验（USB-CAN 默认） |
 | JustFloat | VOFA+ 兼容，小端浮点字节流 |
 | FireWater | VOFA+ 兼容，CSV 文本解析 |
 
-## 功能视图
+## 功能视图（双产品都支持）
 
 ### 发送视图
 - 单条发送，支持 HEX / 文本模式
@@ -44,57 +51,39 @@
 
 ### HEX 分析器
 - 十六进制 / ASCII 双面板显示
-- 数据检查器 (uint8/16/32/64, int8/16/32/64, float, double)
+- 数据检查器 (uint8/16/32/64, int8/16/32/64, float, double, color)
 - GoTo 导航 (偏移 / 行)
 
 ### 数据管理面板
-- RX/TX 通道映射配置 (cmd, offset, 数据类型)
-- GX 通用变量
-- 波形通道绑定 (来源、表达式、颜色、坐标轴)
-- 原始帧查看
-- 配置保存/加载 (JSON)
+- 数据记录表格，支持删除/发送按钮
+- 表头列宽自适应
 
-### 波形视图 (PlotView)
-- 多通道实时波形渲染 (最多 64 通道)
-- 测量线与十字光标
-- 每通道颜色、可见性、Y 轴绑定
-- 时间轴模式 (完整时间戳 / 精简毫秒)
-- 坐标轴锁定与自适应
+### 波形视图
+- 多通道实时波形渲染
+- Y 轴范围与显隐可配
+
+### 仪表控件集（11 个）
+- 电池、温度、音量、标尺、仪表盘、LED 灯、开关、数字显示、数值输入、标签图、波形
+- 拖拽布局、主题适配、重启状态恢复
 
 ### 3D 视图
-- DirectX 11 实时渲染
-- 模型导入：OBJ, FBX, glTF, GLB, STL, 3DS, DAE (Assimp)
-- JSON 场景配置，节点/通道绑定
-- 相机控制：旋转、缩放、平移
-- 光照与材质配置
-- 实时数据通道驱动节点更新
+- 基于 Assimp 的 3D 模型渲染
+- 场景配置走 JSON 文件
 
-### 仪表控件
-- **仪表盘** — 圆盘仪表
-- **标尺** — 线性刻度
-- **温度计** — 温度显示
-- **电池** — 电量指示
-- **音量计** — 音量电平
+## 编码
 
-每种仪表支持通道绑定，可创建多个实例。
+统一的 VekEncoding 模块 — 支持 26 种文本编码。发送与接收视图按配置自动转码。
 
-## 文本编码
+## 运行平台
 
-支持 26 种编码格式：
+| 操作系统 | 架构 |
+|---|---|
+| Windows 10 / 11 | x64 + x86 (32 位, Win32) |
 
-UTF-8, GBK, ASCII, Big5, Shift-JIS, ISO-8859-1, GB18030, EUC-KR, UTF-16LE, UTF-16BE, UTF-16, ISO-8859-2, ISO-8859-15, KOI8-R, TIS-620, Windows-1250 ~ 1258, EUC-JP, KOI8-U
+## 源码
 
-## 主题
+<https://github.com/vseasky/NexuTrace>
 
-6 套内置主题：DarkBlue (默认), Light, Emerald, Violet, Amber, Rose
+## 发版镜像（国内）
 
-## 语言
-
-- English (en-US)
-- 简体中文 (zh-CN)
-
-## 系统要求
-
-- Windows 10 / 11
-- x64 或 x86 架构
-- 支持 DirectX 11 的显卡
+<https://gitee.com/vseasky/NexuTraceRelease>

@@ -1,100 +1,89 @@
-# NexusTools
+# NexuTrace
 
-**NexusTools** is a professional multi-protocol communication debugging and data visualization tool for embedded development, IoT, and industrial applications.
+**NexuTrace** is a professional multi-protocol communication debugging and data visualization tool for embedded development, IoT, and industrial applications. The full distribution ships two products from one source tree:
+
+- **NexuTrace** — full feature set, supports every connection type and protocol.
+- **VCAN-Views** — USB-CAN dedicated free variant. All data analysis views are preserved; only the non-USB-CAN transports, online updater and subscription system are removed.
+
+Both products are released **per version, in x64 + x86 (32-bit) Windows builds**, four zip files per release.
 
 ## Connectivity
 
-| Type | Description |
-|------|-------------|
-| Serial | COM port communication |
-| USB CDC | Virtual serial port (CDC ACM) |
-| USB HID | HID device communication |
-| USB WinUSB | WinUSB device communication |
-| TCP Server | TCP server, multi-client support |
-| TCP Client | TCP client connection |
-| UDP | UDP datagram communication |
+| Type | NexuTrace | VCAN-Views | Description |
+|---|:---:|:---:|---|
+| Serial | ✓ | — | COM port communication |
+| USB CDC | ✓ | — | Virtual serial port (CDC ACM) |
+| USB HID | ✓ | — | HID device communication |
+| USB WinUSB | ✓ | — | WinUSB device communication |
+| TCP Server | ✓ | — | TCP server, multi-client support |
+| TCP Client | ✓ | — | TCP client connection |
+| UDP | ✓ | — | UDP datagram |
+| **USB-CAN (VCAN)** | ✓ | ✓ | VCAN protocol, single/dual channel |
+| **USB-CAN (Candle)** | ✓ | ✓ | Candle / gs_usb, dual channel + CAN-FD |
 
 ## Protocol Support
 
 | Protocol | Description |
-|----------|-------------|
-| NexusProtocol | Native binary protocol with framing and CRC |
+|---|---|
+| NexuFrame | Native binary protocol with framing and CRC (default for USB-CAN) |
 | JustFloat | VOFA+ compatible, little-endian float stream |
 | FireWater | VOFA+ compatible, CSV text parsing |
 
-## Views
+## Views (available on both products)
 
 ### Transmit View
-- Single send with HEX/text mode
+- Single send with HEX / text mode
 - Multi-line send table with per-row channel, enable, period, count
 - Periodic send with configurable interval
-- Auto-increment counter prefix
-- Newline type selection (NULL / LF / CR / CRLF)
+- Auto-increment prefix
+- Newline style selection (NULL / LF / CR / CRLF)
 
 ### Receive View
-- Real-time text display with high-performance large text rendering
-- Line-level selection and Ctrl+C copy
-- Timestamp display
-- Auto-scroll with pause support
+- Real-time text display, optimized for large-volume rendering
+- Per-line selection + Ctrl+C copy
+- Timestamps
+- Auto-scroll with pause
 
 ### Receive Table View
-- Structured packet display with TimeDelta, Time, ID, Direction, Type, Length, Data columns
-- Row selection and scrolling
+- Structured frames: TimeDelta / Time / ID / Direction / Type / Length / Data
+- Row selection + scroll
 - Frozen header row
 
 ### HEX Analyzer
-- Hex/ASCII dual-pane display
-- Data inspector (uint8/16/32/64, int8/16/32/64, float, double)
-- GoTo navigation (offset / line)
+- Hex / ASCII dual panel
+- Data inspector (uint8/16/32/64, int8/16/32/64, float, double, color)
+- Goto navigation (offset / row)
 
-### Data Management Panel
-- RX/TX channel mapping configuration (cmd, offset, data type)
-- GX general variables
-- Waveform channel binding (source, expression, color, axis)
-- Raw frame inspection
-- Configuration save/load (JSON)
+### Data Panel
+- Editable data record table with delete / send buttons
+- Auto-fit column widths
 
-### Waveform View (PlotView)
-- Multi-channel real-time waveform rendering (up to 64 channels)
-- Measurement lines and crosshair cursor
-- Per-channel color, visibility, Y-axis binding
-- Time axis modes (full timestamp / compact ms)
-- Axis lock and auto-fit
+### Plot View
+- Real-time waveform across multiple channels
+- Configurable Y axis hint and visibility
+
+### Widget Cluster (11 widgets)
+- Battery, Temperature, Volume, Ruler, Gauge, LedBulb, ToggleSwitch, DigitDisplay, ValueInput, LabelImage, Plot
+- Drag-resize layout, theming, persistence across restarts
 
 ### 3D View
-- DirectX 11 real-time rendering
-- Model import: OBJ, FBX, glTF, GLB, STL, 3DS, DAE (via Assimp)
-- JSON scene configuration with node/channel binding
-- Camera controls: rotate, zoom, pan
-- Lighting and material configuration
-- Real-time node value updates from data channels
+- 3D model preview powered by Assimp
+- Scene configurable via JSON
 
-### Instruments
-- **Gauge** — dashboard dial
-- **Ruler** — linear scale
-- **Thermometer** — temperature display
-- **Battery** — charge level
-- **Volume** — audio level meter
+## Encoding
 
-Each instrument supports channel binding and multiple instances.
+Unified VekEncoding module — 26 text encodings supported. Transmit and Receive views auto-encode per setting.
 
-## Text Encoding
+## Platform
 
-26 encodings supported for transmit and receive:
+| OS | Arch |
+|---|---|
+| Windows 10 / 11 | x64 + x86 (32-bit, Win32) |
 
-UTF-8, GBK, ASCII, Big5, Shift-JIS, ISO-8859-1, GB18030, EUC-KR, UTF-16LE, UTF-16BE, UTF-16, ISO-8859-2, ISO-8859-15, KOI8-R, TIS-620, Windows-1250 ~ 1258, EUC-JP, KOI8-U
+## Source
 
-## Themes
+<https://github.com/vseasky/NexuTrace>
 
-6 built-in themes: DarkBlue (default), Light, Emerald, Violet, Amber, Rose
+## Release Mirror (China)
 
-## Languages
-
-- English (en-US)
-- Simplified Chinese (zh-CN)
-
-## System Requirements
-
-- Windows 10 / 11
-- x64 or x86
-- DirectX 11 compatible GPU
+<https://gitee.com/vseasky/NexuTraceRelease>

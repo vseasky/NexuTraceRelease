@@ -1,20 +1,43 @@
-# NexusTools 更新说明
+# NexuTrace
 
-## v0.0.0.1 (2026-03-22)
+> 面向嵌入式、物联网与工业场景的多协议通信调试与数据可视化工具。
 
-### 新功能
-- 统一编码模块（VekEncoding），支持 26 种文本编码
-- 发送窗口（单条/多条/周期）根据编码设置自动转码
-- 数据管理面板表格优化：删除/发送按钮填充单元格、表头列宽自适应文字
-- 表格单元格文本支持选中复制
-- 输入框光标颜色跟随主题主色调
-- 接收表格视图统一行高
-- 面板 Tab 样式统一（对比度、选中/未选中状态）
-- 浮动/停靠窗口圆角与关闭按钮修正
-- 打包脚本支持 x64/x86 双架构构建
+同源同构，单次发版交付**两个产品**：
 
-### 修复
-- 发送窗口未按编码格式转码即发送
-- 建立连接时不再自动使能协议
-- 表格标题行 `##` 前缀被渲染为可见文本
-- 表格内控件 hover/active 背景色与行背景冲突
+| 产品 | 定位 | 连接方式 | 授权 |
+|---|---|---|---|
+| **NexuTrace** | 全栈调试工作台 | Serial / USB CDC / HID / WinUSB / TCP / UDP / **USB-CAN** | 订阅制 |
+| **VCAN-Views** | USB-CAN 专用工具 | **仅 USB-CAN**（VCAN + Candle） | **完全免费** |
+
+VCAN-Views 保留全部数据可视化能力（Hex / Plot / 11 仪表控件 / 数据面板 / 3D 视图），仅去掉非 USB-CAN 通道、在线升级与订阅系统。
+
+## 下载
+
+每个版本提供 **4 个 zip 安装包**（双产品 × x64 + x86）：
+
+```
+NexuTrace_x64_X_Y_Z_W.zip
+NexuTrace_x86_X_Y_Z_W.zip
+VCAN-Views_x64_X_Y_Z_W.zip
+VCAN-Views_x86_X_Y_Z_W.zip
+```
+
+到 [Releases](https://gitee.com/vseasky/NexuTraceRelease/releases) 页面下载对应 zip，解压后运行 `.exe` 即可。
+
+## 文档
+
+| 文件 | 内容 |
+|---|---|
+| `introduction.md` | 功能概览、支持的连接与协议、视图清单 |
+| `release_history.md` | 历史发版日志（最新在顶部） |
+
+英文版位于上一级目录。
+
+## 资源
+
+- 源码仓库：<https://github.com/vseasky/NexuTrace>
+- 发版镜像（国内）：<https://gitee.com/vseasky/NexuTraceRelease>
+
+## 许可
+
+见 [LICENSE](../LICENSE)。
